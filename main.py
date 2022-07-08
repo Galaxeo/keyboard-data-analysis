@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(style = "whitegrid")
 
-keydf = pd.read_excel('C:\\Users\\Justin\\PycharmProjects\\keyboard\\keyb1.xlsx')
-keydf2 = pd.read_excel('C:\\Users\\Justin\\Documents\\keyb2.xlsx')
+keydf = pd.read_excel('C:\\Users\\Justin\\PycharmProjects\\keyb\\keyb1.xlsx')
+keydf2 = pd.read_excel('C:\\Users\\Justin\\PycharmProjects\\keyb\\keyb2.xlsx')
 
 print(keydf.iat[0,9])
 
@@ -39,41 +39,91 @@ def calculate_weights(lst):
     return [reasons.count('Gaming'), reasons.count('Quality'),
             reasons.count('Productivity'), reasons.count('Aesthetics'), reasons.count('Price')]
 
+def weights(lst):
+    global keydf
+    game = 0
+    prod = 0
+    notprod = 0
+    for i in lst:
+        prod+=keydf.iat[int(i), 4]
+        game+=keydf.iat[int(i), 5]
+        notprod+=keydf.iat[int(i), 6]
+    return game, prod, notprod
+
+#Pie chart weighing gaming, productivity, and non-productive tasks - gaming
+
+#Tactile
+labels = 'Productive', 'Gaming', 'Unproductive'
+sizes = weights(tactile)
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct = '%1.1f%%', startangle = 90)
+ax1.axis('equal')
+plt.title("Time Spent (Tactile Users)")
+plt.savefig('tactileweights.png')
+plt.close()
+
+#Linear
+labels = 'Productive', 'Gaming', 'Unproductive'
+sizes = weights(linear)
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct = '%1.1f%%', startangle = 90)
+ax1.axis('equal')
+plt.title("Time Spent (Linear Users)")
+plt.savefig('linearweights.png')
+plt.close()
+
+#Clicky
+labels = 'Productive', 'Gaming', 'Unproductive'
+sizes = weights(clicky)
+
+fig1, ax1 = plt.subplots()
+ax1.pie(sizes, labels=labels, autopct = '%1.1f%%', startangle = 90)
+ax1.axis('equal')
+plt.title("Time Spent (Clicky Users)")
+plt.savefig('clickyweights.png')
+plt.close()
 
 #Min and Max plots with both people who are in and not in, as well as updated versus with previous
-#Both Together
-f, ax = plt.subplots()
-sns.violinplot(x="Keyboard", y="Min", hue="Heard?", data=keydf, split=True)
-ax.set(xlabel="Type of Keyboard", ylabel="Minimum $ for a custom keyboard")
-plt.ylim(0, 5)
-plt.legend(title = "Heard of custom?", loc='upper right')
-plt.savefig("minplot.png")
-plt.close()
+# #Both Together
+# f, ax = plt.subplots()
+# sns.violinplot(x="Keyboard", y="Min", hue="Heard?", data=keydf, split=True)
+# ax.set(xlabel="Type of Keyboard", ylabel="Minimum $ for a custom keyboard")
+# plt.ylim(0, 5)
+# plt.legend(title = "Heard of custom?", loc='upper right')
+# plt.title("Min. $ for a custom (all data)")
+# plt.savefig("minplot.png")
+# plt.close()
+#
+# f, ax = plt.subplots()
+# sns.violinplot(x="Keyboard", y="Max", hue="Heard?", data=keydf, split=True)
+# ax.set(xlabel="Type of Keyboard", ylabel="Maximum $ for a custom keyboard")
+# plt.ylim(0, 15)
+# plt.legend(title = "Heard of custom?", loc='upper right')
+# plt.title("Max. $ for a custom (all data)")
+# plt.savefig("maxplot.png")
+# plt.close()
 
-f, ax = plt.subplots()
-sns.violinplot(x="Keyboard", y="Max", hue="Heard?", data=keydf, split=True)
-ax.set(xlabel="Type of Keyboard", ylabel="Minimum $ for a custom keyboard")
-plt.ylim(0, 15)
-plt.legend(title = "Heard of custom?", loc='upper right')
-plt.savefig("maxplot.png")
-plt.close()
+# # Both Separately
+# f, ax = plt.subplots()
+# sns.violinplot(x="Keyboard", y="Min", hue="Heard?", data=keydf2, split=True)
+# ax.set(xlabel="", ylabel="Minimum $ for a custom keyboard")
+# plt.ylim(0, 5)
+# plt.legend(title = "Heard of custom?", loc='upper right')
+# plt.title("Min. $ for a custom (selective data)")
+# plt.savefig("minplot2.png")
+# plt.close()
+#
+# f, ax = plt.subplots()
+# sns.violinplot(x="Keyboard", y="Max", hue="Heard?", data=keydf2, split=True)
+# ax.set(xlabel="", ylabel="Max $ for a custom keyboard")
+# plt.ylim(0, 15)
+# plt.legend(title = "Heard of custom?", loc='upper right')
+# plt.title("Min. $ for a custom (selective data)")
+# plt.savefig("maxplot2.png")
+# plt.close()
 
-#Both Separately
-f, ax = plt.subplots()
-sns.violinplot(x="Keyboard", y="Min", hue="Heard?", data=keydf2, split=True)
-ax.set(xlabel="", ylabel="Minimum $ for a custom keyboard")
-plt.ylim(0, 5)
-plt.legend(title = "Heard of custom?", loc='upper right')
-plt.savefig("minplot2.png")
-plt.close()
-
-f, ax = plt.subplots()
-sns.violinplot(x="Keyboard", y="Max", hue="Heard?", data=keydf2, split=True)
-ax.set(xlabel="", ylabel="Minimum $ for a custom keyboard")
-plt.ylim(0, 15)
-plt.legend(title = "Heard of custom?", loc='upper right')
-plt.savefig("maxplot2.png")
-plt.close()
 # f, ax = plt.subplots()
 # #Minimum price plot
 # sns.violinplot(x = "Switches", y = "Min", data=keydf)
