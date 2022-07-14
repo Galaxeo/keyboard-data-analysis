@@ -98,8 +98,6 @@ plt.close()
 
 
 # Bar graph, time spent split into those who bought the keyboard for that reason and those who didn't
-#Gaming, Quality, Productivity, Aesthetics, Price
-#Gaming is the only one that we really want to look at, because it's hard to
 switches = ['Tactile', 'Linear', 'Clicky']
 groups = ['Purchased for gaming', 'Other reasons']
 total_gaming = weights(tactile)[0] + weights(linear)[0] + weights(clicky)[0] + weights(other)[0]
@@ -153,7 +151,8 @@ plt.close()
 
 
 
-#Min and Max plots with both people who are in and not in, as well as updated versus with previous
+# Analyzing those who are outside of the market's perception of minimum and maximum $ for a custom keyboard
+# Split into two groups, first with all data combined, second with updated improved groups of data
 #Both Together
 f, ax = plt.subplots()
 sns.violinplot(x="Keyboard", y="Min", hue="Heard?", data=keydf, split=True)
