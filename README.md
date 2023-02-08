@@ -1,4 +1,4 @@
-### [Detailed Write-Up Here](https://galakeys.com/2022/07/12/keyboard-data-analysis/)
+### [Detailed Write-Up Here](https://cheok.works/keybArticles/dataProj/kb-data-project.html/)
 # Keyboard Study Project
 For all details regarding this project, please refer to my detailed write-up!
 
