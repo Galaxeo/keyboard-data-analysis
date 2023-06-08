@@ -1,4 +1,4 @@
-### [Detailed Write-Up Here]([https://cheok.works/keybArticles/dataProj/kb-data-project.html](https://cheok.works/galaKeys/dataProj/))
+### [Detailed Write-Up Here](https://cheok.works/galaKeys/dataProj/)
 # Keyboard Study Project
 For all details regarding this project, please refer to my detailed write-up!
 
